@@ -23,7 +23,7 @@ async function loadScryptModule(): Promise<ScryptModule> {
   }
 
   if (!browserModulePromise) {
-    const browserModulePath = "/vendor/hash-wasm/index.esm.js";
+    const browserModulePath = new URL("../vendor/hash-wasm/index.esm.js", import.meta.url).href;
     browserModulePromise = import(browserModulePath) as Promise<ScryptModule>;
   }
 
