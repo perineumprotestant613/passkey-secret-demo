@@ -1,21 +1,64 @@
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
   --bg: #f6f7f8;
+  --bg-top: #f8f9fb;
+  --bg-glow: rgba(255, 255, 255, 0.8);
   --panel: rgba(255, 255, 255, 0.92);
   --panel-border: rgba(15, 23, 42, 0.08);
   --text: #111827;
   --muted: #6b7280;
+  --header-border: rgba(15, 23, 42, 0.06);
   --assistant-bubble: #ffffff;
+  --assistant-border: rgba(15, 23, 42, 0.06);
+  --assistant-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
   --user-bubble: rgba(17, 24, 39, 0.06);
+  --user-border: rgba(15, 23, 42, 0.05);
+  --code-bg: #f3f4f6;
+  --code-border: rgba(15, 23, 42, 0.06);
+  --inline-code-bg: rgba(15, 23, 42, 0.06);
+  --composer-shell-bg: rgba(255, 255, 255, 0.72);
+  --composer-panel-bg: #ffffff;
+  --composer-panel-border: rgba(15, 23, 42, 0.08);
   --accent: #111827;
+  --accent-contrast: #ffffff;
   --accent-soft: rgba(17, 24, 39, 0.08);
   --success: #1f9d55;
+  --empty-dot: #cbd5e1;
+  --title-link: rgba(17, 24, 39, 0.72);
+  --title-link-hover: #111827;
+  --link-accent: #3478f6;
+  --ghost-border: rgba(15, 23, 42, 0.08);
+  --ghost-bg: rgba(17, 24, 39, 0.03);
+  --modal-backdrop: rgba(15, 23, 42, 0.2);
+  --modal-panel: rgba(255, 255, 255, 0.98);
+  --modal-panel-border: rgba(15, 23, 42, 0.06);
+  --modal-shadow:
+    0 24px 60px rgba(37, 99, 235, 0.08),
+    0 18px 40px rgba(15, 23, 42, 0.08);
+  --unlock-modal-shadow:
+    0 28px 60px rgba(15, 23, 42, 0.16),
+    0 10px 24px rgba(15, 23, 42, 0.08);
+  --modal-error-bg: rgba(239, 68, 68, 0.08);
+  --modal-error-border: rgba(239, 68, 68, 0.14);
+  --modal-error-text: #b42318;
+  --unlock-close: rgba(17, 24, 39, 0.88);
+  --unlock-button-bg: #ffffff;
+  --unlock-button-border: rgba(15, 23, 42, 0.08);
+  --unlock-button-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 1px 2px rgba(15, 23, 42, 0.04);
+  --unlock-button-icon: rgba(17, 24, 39, 0.78);
+  --input-border: rgba(15, 23, 42, 0.1);
+  --input-bg: rgba(17, 24, 39, 0.025);
+  --input-focus-border: rgba(15, 23, 42, 0.24);
+  --input-focus-bg: #ffffff;
+  --unlock-input-bg: #f8fafc;
   --shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", "SF Pro Text", Helvetica, Arial, sans-serif;
   background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.8), transparent 35%),
-    linear-gradient(180deg, #f8f9fb 0%, var(--bg) 100%);
+    radial-gradient(circle at top, var(--bg-glow), transparent 35%),
+    linear-gradient(180deg, var(--bg-top) 0%, var(--bg) 100%);
   color: var(--text);
   line-height: 1.5;
   font-weight: 400;
@@ -68,13 +111,69 @@ button {
   backdrop-filter: blur(16px);
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1120;
+    --bg-top: #111827;
+    --bg-glow: rgba(52, 120, 246, 0.12);
+    --panel: rgba(15, 23, 42, 0.86);
+    --panel-border: rgba(148, 163, 184, 0.14);
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --header-border: rgba(148, 163, 184, 0.14);
+    --assistant-bubble: rgba(15, 23, 42, 0.88);
+    --assistant-border: rgba(148, 163, 184, 0.14);
+    --assistant-shadow: 0 8px 24px rgba(2, 6, 23, 0.22);
+    --user-bubble: rgba(52, 120, 246, 0.14);
+    --user-border: rgba(96, 165, 250, 0.14);
+    --code-bg: rgba(2, 6, 23, 0.9);
+    --code-border: rgba(148, 163, 184, 0.16);
+    --inline-code-bg: rgba(148, 163, 184, 0.16);
+    --composer-shell-bg: rgba(15, 23, 42, 0.74);
+    --composer-panel-bg: rgba(15, 23, 42, 0.92);
+    --composer-panel-border: rgba(148, 163, 184, 0.16);
+    --accent: #f3f4f6;
+    --accent-contrast: #111827;
+    --empty-dot: #475569;
+    --title-link: rgba(226, 232, 240, 0.72);
+    --title-link-hover: #f8fafc;
+    --ghost-border: rgba(148, 163, 184, 0.16);
+    --ghost-bg: rgba(148, 163, 184, 0.08);
+    --modal-backdrop: rgba(2, 6, 23, 0.45);
+    --modal-panel: rgba(15, 23, 42, 0.96);
+    --modal-panel-border: rgba(148, 163, 184, 0.14);
+    --modal-shadow:
+      0 24px 60px rgba(2, 6, 23, 0.42),
+      0 18px 40px rgba(2, 6, 23, 0.22);
+    --unlock-modal-shadow:
+      0 28px 60px rgba(2, 6, 23, 0.48),
+      0 10px 24px rgba(2, 6, 23, 0.24);
+    --modal-error-bg: rgba(239, 68, 68, 0.12);
+    --modal-error-border: rgba(248, 113, 113, 0.24);
+    --modal-error-text: #fecaca;
+    --unlock-close: rgba(226, 232, 240, 0.88);
+    --unlock-button-bg: rgba(15, 23, 42, 0.9);
+    --unlock-button-border: rgba(148, 163, 184, 0.16);
+    --unlock-button-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 1px 2px rgba(2, 6, 23, 0.28);
+    --unlock-button-icon: rgba(226, 232, 240, 0.82);
+    --input-border: rgba(148, 163, 184, 0.16);
+    --input-bg: rgba(2, 6, 23, 0.46);
+    --input-focus-border: rgba(96, 165, 250, 0.38);
+    --input-focus-bg: rgba(15, 23, 42, 0.96);
+    --unlock-input-bg: rgba(2, 6, 23, 0.56);
+    --shadow: 0 24px 60px rgba(2, 6, 23, 0.26);
+  }
+}
+
 .chat-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   padding: 20px 22px 16px;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  border-bottom: 1px solid var(--header-border);
 }
 
 .chat-title {
@@ -95,7 +194,7 @@ button {
   justify-content: center;
   width: 20px;
   height: 20px;
-  color: rgba(17, 24, 39, 0.72);
+  color: var(--title-link);
   transition: color 160ms ease, transform 160ms ease;
 }
 
@@ -105,7 +204,7 @@ button {
 }
 
 .chat-title-link:hover {
-  color: #111827;
+  color: var(--title-link-hover);
   transform: translateY(-1px);
 }
 
@@ -134,7 +233,7 @@ button {
   width: 10px;
   height: 10px;
   border-radius: 999px;
-  background: #cbd5e1;
+  background: var(--empty-dot);
 }
 
 .status-dot[data-state="locked"] {
@@ -184,13 +283,13 @@ button {
 
 .bubble-assistant {
   background: var(--assistant-bubble);
-  border: 1px solid rgba(15, 23, 42, 0.06);
-  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+  border: 1px solid var(--assistant-border);
+  box-shadow: var(--assistant-shadow);
 }
 
 .bubble-user {
   background: var(--user-bubble);
-  border: 1px solid rgba(15, 23, 42, 0.05);
+  border: 1px solid var(--user-border);
 }
 
 .message-code {
@@ -198,8 +297,8 @@ button {
   padding: 12px 14px;
   border-radius: 14px;
   overflow-x: auto;
-  background: #f3f4f6;
-  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
   font-size: 12px;
   line-height: 1.55;
 }
@@ -218,25 +317,25 @@ button {
 .secret-inline code {
   padding: 3px 8px;
   border-radius: 999px;
-  background: rgba(15, 23, 42, 0.06);
+  background: var(--inline-code-bg);
   font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace;
   font-size: 12px;
 }
 
 .composer-shell {
   padding: 14px 16px 16px;
-  border-top: 1px solid rgba(15, 23, 42, 0.06);
-  background: rgba(255, 255, 255, 0.72);
+  border-top: 1px solid var(--header-border);
+  background: var(--composer-shell-bg);
 }
 
 .composer {
   display: grid;
   gap: 10px;
   padding: 10px;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  background: #ffffff;
+  border: 1px solid var(--composer-panel-border);
+  background: var(--composer-panel-bg);
   border-radius: 22px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .composer textarea {
@@ -287,7 +386,7 @@ button {
 }
 
 .composer-credit a {
-  color: #3478f6;
+  color: var(--link-accent);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -303,7 +402,7 @@ button {
 
 .send-button {
   background: var(--accent);
-  color: #ffffff;
+  color: var(--accent-contrast);
 }
 
 .ghost-button {
@@ -312,8 +411,8 @@ button {
 }
 
 .ghost-button-header {
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  background: rgba(17, 24, 39, 0.03);
+  border: 1px solid var(--ghost-border);
+  background: var(--ghost-bg);
 }
 
 .send-button:hover:not(:disabled),
@@ -333,7 +432,7 @@ button {
   display: grid;
   place-items: center;
   padding: 24px;
-  background: rgba(15, 23, 42, 0.2);
+  background: var(--modal-backdrop);
 }
 
 .modal-backdrop[hidden] {
@@ -343,12 +442,10 @@ button {
 .setup-modal {
   width: min(460px, 100%);
   padding: 28px 32px 30px;
-  background: rgba(255, 255, 255, 0.98);
-  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: var(--modal-panel);
+  border: 1px solid var(--modal-panel-border);
   border-radius: 32px;
-  box-shadow:
-    0 24px 60px rgba(37, 99, 235, 0.08),
-    0 18px 40px rgba(15, 23, 42, 0.08);
+  box-shadow: var(--modal-shadow);
 }
 
 .unlock-modal {
@@ -356,9 +453,7 @@ button {
   position: relative;
   padding: 24px 28px 26px;
   border-radius: 28px;
-  box-shadow:
-    0 28px 60px rgba(15, 23, 42, 0.16),
-    0 10px 24px rgba(15, 23, 42, 0.08);
+  box-shadow: var(--unlock-modal-shadow);
 }
 
 .setup-topline {
@@ -369,7 +464,7 @@ button {
 }
 
 .setup-kicker {
-  color: #6b7280;
+  color: var(--muted);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -412,9 +507,9 @@ button {
   margin: -8px 0 2px;
   padding: 10px 12px;
   border-radius: 14px;
-  background: rgba(239, 68, 68, 0.08);
-  border: 1px solid rgba(239, 68, 68, 0.14);
-  color: #b42318;
+  background: var(--modal-error-bg);
+  border: 1px solid var(--modal-error-border);
+  color: var(--modal-error-text);
   font-size: 13px;
   line-height: 1.4;
 }
@@ -453,7 +548,7 @@ button {
   border: none;
   border-radius: 999px;
   background: transparent;
-  color: rgba(17, 24, 39, 0.88);
+  color: var(--unlock-close);
 }
 
 .unlock-close svg {
@@ -466,7 +561,7 @@ button {
   height: 72px;
   display: grid;
   place-items: center;
-  color: #3478f6;
+  color: var(--link-accent);
 }
 
 .unlock-hero-icon svg {
@@ -481,7 +576,7 @@ button {
 }
 
 .unlock-kicker {
-  color: #6b7280;
+  color: var(--muted);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.2em;
@@ -504,9 +599,9 @@ button {
 .unlock-primary {
   height: 58px;
   width: 100%;
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  border: 1px solid var(--unlock-button-border);
   border-radius: 16px;
-  background: #ffffff;
+  background: var(--unlock-button-bg);
   color: var(--text);
   font-weight: 700;
   font-size: 17px;
@@ -514,15 +609,13 @@ button {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.8),
-    0 1px 2px rgba(15, 23, 42, 0.04);
+  box-shadow: var(--unlock-button-shadow);
 }
 
 .unlock-button-icon {
   width: 18px;
   height: 18px;
-  color: rgba(17, 24, 39, 0.78);
+  color: var(--unlock-button-icon);
 }
 
 .unlock-button-icon svg {
@@ -534,7 +627,7 @@ button {
   align-self: center;
   border: none;
   background: transparent;
-  color: #3478f6;
+  color: var(--link-accent);
   font-weight: 700;
   font-size: 15px;
   padding: 0;
@@ -565,17 +658,17 @@ button {
 .input-group input {
   height: 62px;
   padding: 0 18px;
-  border: 1px solid rgba(15, 23, 42, 0.1);
+  border: 1px solid var(--input-border);
   border-radius: 18px;
-  background: rgba(17, 24, 39, 0.025);
+  background: var(--input-bg);
   color: var(--text);
   font-size: 16px;
 }
 
 .input-group input:focus {
   outline: none;
-  border-color: rgba(15, 23, 42, 0.24);
-  background: #ffffff;
+  border-color: var(--input-focus-border);
+  background: var(--input-focus-bg);
 }
 
 .setup-actions {
@@ -591,7 +684,8 @@ button {
 
 .unlock-modal .send-button {
   border-radius: 16px;
-  background: #3478f6;
+  background: var(--link-accent);
+  color: #ffffff;
 }
 
 .unlock-passphrase-form {
@@ -606,7 +700,7 @@ button {
 
 .unlock-input-group input {
   border-radius: 16px;
-  background: #f8fafc;
+  background: var(--unlock-input-bg);
 }
 
 .unlock-actions {

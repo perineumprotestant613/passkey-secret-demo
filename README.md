@@ -1,6 +1,10 @@
 # Passkey Secret Demo
 
-A small, browser-first demo for one specific idea:
+A tiny demo of protecting browser-stored secrets with passkeys.
+
+[Live Demo](https://boltai.com/passkey-demo) • [Source Code](https://github.com/BoltAI/passkey-secret-demo) • Made by [@daniel_nguyenx](https://x.com/daniel_nguyenx) for [BoltAI](https://boltai.com)
+
+This is a small, browser-first demo for one specific idea:
 
 - encrypt a user secret locally in the browser
 - store only ciphertext in browser storage

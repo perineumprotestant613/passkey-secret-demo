@@ -7,11 +7,15 @@
     "dev": "node scripts/dev.mjs",
     "build": "node scripts/clean.mjs && node node_modules/typescript/lib/tsc.js --noEmit && node node_modules/typescript/lib/tsc.js --project tsconfig.build.json && node scripts/build.mjs",
     "preview": "node scripts/serve.mjs",
-    "test": "node --experimental-strip-types --test tests/**/*.test.ts"
+    "test": "node --experimental-strip-types --test tests/**/*.test.ts",
+    "deploy": "npm run build && node node_modules/wrangler/bin/wrangler.js deploy",
+    "deploy:dry-run": "npm run build && node node_modules/wrangler/bin/wrangler.js deploy --dry-run",
+    "preview:cf": "npm run build && node node_modules/wrangler/bin/wrangler.js dev"
   },
   "devDependencies": {
     "@types/node": "^24.9.1",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.79.0"
   },
   "dependencies": {
     "hash-wasm": "^4.12.0"

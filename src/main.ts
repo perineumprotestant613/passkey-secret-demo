@@ -101,7 +101,9 @@ app.innerHTML = `
         <div class="composer-footer">
           <div class="composer-hint" id="composer-hint"></div>
           <div class="composer-credit">
-            Brought to you by
+            Made by
+            <a href="https://x.com/daniel_nguyenx" target="_blank" rel="noreferrer">@daniel_nguyenx</a>
+            for
             <a href="https://boltai.com" target="_blank" rel="noreferrer">BoltAI</a>
           </div>
         </div>
